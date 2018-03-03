@@ -9,7 +9,9 @@
 namespace App\Repositories;
 
 
+use App\Usuario;
 use Illuminate\Container\Container as App;
+
 
 abstract class Repositorio implements abmInterface
 {
@@ -26,13 +28,15 @@ abstract class Repositorio implements abmInterface
     public function create(array $data)
     {
         $obj = $this->gateway->create($data);
-        return $this->mapper->map($obj);
+        return $obj;
     }
 
     public function update(array $data, $id)
     {
-        $obj = $this->gateway->update($data, $id);
-        return $this->mapper->map($obj);
+        $obj = $this->gateway->findOrFail($id);
+        $obj->fill($data);
+        $obj->save();
+        return $obj;
     }
 
     public function destroy($id)
@@ -43,22 +47,23 @@ abstract class Repositorio implements abmInterface
 
     public function all()
     {
-        $obj = $this->gateway->all();
-        return $obj->map(function($obj){
-            return $this->mapper->map($obj);
-        });
+        return $this->gateway->all();
+//        return Usuario::all();
+//        return $obj->map(function($obj){
+//            return $obj;
+//        });
     }
 
     public function find($id)
     {
-        $obj = $this->gateway->find($id);
-        return $this->mapper->map($obj);
+        $obj = $this->gateway->findOrFail($id);
+        return $obj;
     }
 
     public function findByUser($userId)
     {
         $obj = $this->gateway->findByUser($userId);
-        return $this->mapper->map($obj);
+        return $obj;
     }
 
     public function attach($ids, $attach, $id)

@@ -14,21 +14,33 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-//-------------------- RESERVA -----------------------
+//-------------------- LINDE -----------------------
+Route::get('usuario/all', 'UsuarioController@getAll');
+Route::get('duty/all', 'DutyController@getAll');
+Route::get('matriz/all', 'MatrizController@getAll');
 
-Route::get('reserva/all', 'ReservaController@all');
-Route::resource('reserva', 'ReservaController');
+//--OPERADORES--
+Route::get('operador/all', 'OperadorController@getAll');
+Route::get('operador/sucursales/{operador}', 'OperadorController@getSucursales');
 
-//--------------------- ITEM -----------------------
+//--PERFILES--
+Route::get('perfil/all', 'PerfilController@getAll');
+Route::get('perfil/poroperador/{operador}', 'PerfilController@getPerfilesPorOperador');
 
-Route::get('item/all', 'ItemController@all');
-Route::resource('item', 'ItemController');
+//--ANALISIS--
+Route::get('analisis/lite', 'AnalisisController@liteAnalisis');
+Route::get('analisis/full', 'AnalisisController@fullAnalisis');
 
-//---------------------- BOLICHE -------------------
+//--RESOURCES--
+Route::resource('usuario', 'UsuarioController');
+Route::resource('duty', 'DutyController');
+Route::resource('matriz', 'MatrizController');
 
-Route::post('boliche/items', 'BolicheController@items');
-Route::get('boliche/all', 'BolicheController@all');
-Route::resource('boliche', 'BolicheController');
+//Route::get('operador/{operador/{sucursal}}','OperadorController@find');
+
+
+//Router::get('Usuario/{nombre}/{sucursal}', 'UsuarioController@get');
+
 
 Route::post('tablita', function(Request $request){
     $tabla = $request['tabla'];
