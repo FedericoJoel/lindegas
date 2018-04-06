@@ -22,6 +22,7 @@ Route::get('matriz/all', 'MatrizController@getAll');
 //--OPERADORES--
 Route::get('operador/all', 'OperadorController@getAll');
 Route::get('operador/sucursales/{operador}', 'OperadorController@getSucursales');
+Route::post('operador', 'OperadorController@create');
 
 //--PERFILES--
 Route::get('perfil/all', 'PerfilController@getAll');
@@ -36,6 +37,8 @@ Route::resource('usuario', 'UsuarioController');
 Route::resource('duty', 'DutyController');
 Route::resource('matriz', 'MatrizController');
 
+////--RISKLOG--
+//Route::resource('risklog', RiskLogController);
 //Route::get('operador/{operador/{sucursal}}','OperadorController@find');
 
 

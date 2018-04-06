@@ -40,4 +40,12 @@ class OperadorRepo
     {
         return 'App\Repositories\OperadorRepo';
     }
+
+    function create($info){
+//        DB::table('Operador')->insert([
+//            ['operador' => 'nombre', 'sucursal' => 'sucursales', 'nombre_operador' => 'nombre', 'clave_operador' => 'clave',
+//                'fehca_de_expiracion' => 'expiracion', 'habilitado_sn' => 'S', 'Perfil_SN' => 'N', 'email' => 'email', 'User_AD' => 'userad']
+//        ]);
+
+    }
 }

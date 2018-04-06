@@ -71,4 +71,8 @@ class OperadorController extends Controller
     public function getOperador($operador){
 //        return this->repo->find($operador);
     }
+
+    public function create($info){
+        $this->repo->create($info);
+    }
 }
