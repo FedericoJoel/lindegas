@@ -26,6 +26,7 @@ Route::post('operador', 'OperadorController@create'); // MODIFICAR CREATE
 
 //--PERFILES--
 Route::get('perfil/all', 'PerfilController@getAll');
+Route::get('perfil/all/agrupados', 'PerfilController@getAllAgrupados');
 Route::get('perfil/poroperador/{operador}', 'PerfilController@getPerfilesPorOperador');
 
 //--ANALISIS--
