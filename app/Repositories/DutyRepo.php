@@ -17,4 +17,10 @@ class DutyRepo extends Repositorio
     {
         return 'App\Repositories\DutyRepo';
     }
+
+//    public function attachear(Request $request){
+//        $duty = $this->gateway->find($request['id']);
+//        $duty->attach()->
+//    }
+
 }

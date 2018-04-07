@@ -23,7 +23,9 @@ class DutyController extends Controller
      */
     public function store(Request $request)
     {
-        $this->repo->create($request->all());
+        $obj = $this->repo->create($request->all());
+        $this->repo->attach($request['ids'],'perfiles',$obj->id);
+
     }
 
     /**

@@ -29,6 +29,12 @@ class PerfilRepo
         return $Operadores->toJson();
     }
 
+    public function allAgrupados()
+    {
+        $Operadores = DB::table('Operador')->select('operador','sucursal')->where('Perfil_SN', 'S')->get();
+        return $Operadores->toJson();
+    }
+
     public function perfilesPorOperador($operador)
     {
         $perfil = DB::table('Rel_Operador_Perfil')->select('Operador_Perfil','sucursal_perfil')->where('operador', $operador)->get();

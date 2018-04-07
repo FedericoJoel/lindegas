@@ -15,4 +15,8 @@ class Duty extends Model
         'nombre', 'proceso'
     ];
 
+    public function perfiles()
+    {
+        return $this->belongsToMany('App\Operador', 'Rel_Duty_Perfil', 'idduty', 'perfil');
+    }
 }
