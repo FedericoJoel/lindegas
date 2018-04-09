@@ -29,6 +29,11 @@ class PerfilController extends Controller
         return $this->repo->all();
     }
 
+    public function sucursales()
+    {
+        return $this->repo->sucursales();
+    }
+
     public function getAllAgrupados()
     {
         return $this->repo->allAgrupados();

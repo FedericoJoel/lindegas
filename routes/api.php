@@ -22,16 +22,19 @@ Route::get('matriz/all', 'MatrizController@getAll');
 //--OPERADORES--
 Route::get('operador/all', 'OperadorController@getAll');
 Route::get('operador/sucursales/{operador}', 'OperadorController@getSucursales');
+Route::get('operador/perfiles/{operador}', 'OperadorController@getPerfiles');
 Route::post('operador', 'OperadorController@create'); // MODIFICAR CREATE
 
 //--PERFILES--
 Route::get('perfil/all', 'PerfilController@getAll');
 Route::get('perfil/all/agrupados', 'PerfilController@getAllAgrupados');
 Route::get('perfil/poroperador/{operador}', 'PerfilController@getPerfilesPorOperador');
+Route::get('perfil/sucursales', 'PerfilController@sucursales');
 
 //--ANALISIS--
 Route::get('analisis/lite', 'AnalisisController@liteAnalisis');
 Route::get('analisis/full', 'AnalisisController@fullAnalisis');
+Route::post('analisis/perfiles', 'AnalisisController@perfilesAnalisis');
 
 //--RESOURCES--
 Route::resource('usuario', 'UsuarioController');

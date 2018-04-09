@@ -68,6 +68,12 @@ class OperadorController extends Controller
     {
         return $this->repo->sucursales($operador);
     }
+
+    public function getPerfiles($operador)
+    {
+        return $this->repo->perfiles($operador);
+    }
+
     public function getOperador($operador){
 //        return this->repo->find($operador);
     }

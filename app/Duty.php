@@ -17,6 +17,6 @@ class Duty extends Model
 
     public function perfiles()
     {
-        return $this->belongsToMany('App\Operador', 'Rel_Duty_Perfil', 'idduty', 'perfil');
+        return $this->belongsToMany('App\Operador', 'Rel_Duty_Perfil', 'perfil', 'idduty');
     }
 }

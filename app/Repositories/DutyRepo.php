@@ -18,6 +18,11 @@ class DutyRepo extends Repositorio
         return 'App\Repositories\DutyRepo';
     }
 
+    public function all(){
+        return $this->gateway->with('perfiles')->get();
+
+    }
+
 //    public function attachear(Request $request){
 //        $duty = $this->gateway->find($request['id']);
 //        $duty->attach()->

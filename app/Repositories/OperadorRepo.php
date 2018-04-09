@@ -35,6 +35,11 @@ class OperadorRepo
         return $Sucursales->toJson();
     }
 
+    public function perfiles($operador){
+        $perfiles = DB::table('Rel_Operador_Perfil')->select('Operador_Perfil','sucursal_perfil')->where('operador',$operador)->get();
+        return $perfiles;
+    }
+
 
     function model()
     {

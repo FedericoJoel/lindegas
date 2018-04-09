@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use function GuzzleHttp\Psr7\copy_to_string;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\MatrizRepo;
 use App\Repositories\OperadorRepo;
@@ -81,6 +82,36 @@ class AnalisisController extends Controller
           ON primerset.operador1 =  segundoset.operador2) WHERE primerset.conflicto = segundoset.conflicto2
           GROUP BY primerset.operador1, primerset.duty1, segundoset.duty2, primerset.conflicto, primerset.criticidad,primerset.P1,segundoset.P2,primerset.descripcion
           ORDER BY primerset.operador1");
+        return $results;
+    }
+
+    public function perfilesAnalisis(Request $request){
+        $perfiles = $request['perfiles'];
+
+        $perfilesStr = implode("','", $perfiles);
+        $results = DB::select("
+        SELECT
+            primerset.c1,
+            primerset.p1,
+            primerset.d1,
+            segundoset.p2,
+            segundoset.d2,
+            primerset.criticidad,
+            primerset.descripcion
+          FROM
+            ((SELECT conflicto AS 'c1', perfil AS 'p1', Duty.nombre AS 'd1', Matriz.criticidad AS 'criticidad', Matriz.descripcion AS 'descripcion' FROM Matriz
+              INNER JOIN Duty on Matriz.duty1=Duty.id
+              INNER JOIN Rel_Duty_Perfil ON Rel_Duty_Perfil.idduty = Duty.id
+              WHERE Rel_Duty_Perfil.perfil IN ('$perfilesStr')) AS primerset
+          INNER JOIN
+            (SELECT conflicto AS 'c2', perfil AS 'p2', Duty.nombre AS 'd2' FROM Matriz
+              INNER JOIN Duty on Matriz.duty2 = Duty.id
+              INNER JOIN Rel_Duty_Perfil ON Rel_Duty_Perfil.idduty = Duty.id
+              WHERE Rel_Duty_Perfil.perfil IN ('$perfilesStr')) AS segundoset
+          ON primerset.c1 =  segundoset.c2) WHERE primerset.c1 = segundoset.c2
+          GROUP BY primerset.d1, segundoset.d2, primerset.c1, primerset.criticidad,primerset.p1,segundoset.p2,primerset.descripcion
+        ");
+
         return $results;
     }
 
