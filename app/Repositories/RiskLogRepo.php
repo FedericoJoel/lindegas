@@ -18,8 +18,8 @@ class RiskLogRepo extends Repositorio
         return 'App\Repositories\RiskLogRepo';
     }
 
-    public function all()
-    {
-        return $this->gateway->with(['usuario'])->get();
-    }
+//    public function all()
+//    {
+//        return $this->gateway->with(['usuario'])->get();
+//    }
 }

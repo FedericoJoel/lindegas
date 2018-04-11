@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use http\Env\Request;
 use Illuminate\Support\Facades\DB;
 use App\Operador;
 
@@ -29,6 +30,7 @@ class OperadorRepo
         $Operadores = DB::table('Operador')->select('operador')->where('Perfil_SN', 'N')->groupBy('operador')->get();
         return $Operadores->toJson();
     }
+
     public function sucursales($operador)
     {
         $Sucursales = DB::table('Operador')->select('sucursal')->where('operador', $operador)->groupBy('sucursal')->get();
@@ -40,13 +42,20 @@ class OperadorRepo
         return $perfiles;
     }
 
-
     function model()
     {
         return 'App\Repositories\OperadorRepo';
     }
 
-    function create($info){
+    function create(Array $data){
+//        $sucursales = array();
+//        foreach($data['perfiles'] as $perfil){
+//            array_push($sucursales,$perfil['sucursal_perfil']);
+////            array_push ($sucursales, $perfil['sucursal_perfil']);
+//        }
+//        return $sucursales;
+        return $data;
+
 //        DB::table('Operador')->insert([
 //            ['operador' => 'nombre', 'sucursal' => 'sucursales', 'nombre_operador' => 'nombre', 'clave_operador' => 'clave',
 //                'fehca_de_expiracion' => 'expiracion', 'habilitado_sn' => 'S', 'Perfil_SN' => 'N', 'email' => 'email', 'User_AD' => 'userad']

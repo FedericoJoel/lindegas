@@ -12,7 +12,7 @@ class RiskLog extends Model
     protected $table = 'Risk_Log';
 
     protected $fillable = [
-        'id_usuario', 'id_ticket', 'descripcion', 'conflicto','fecha', 'operador', 'sucursal'
+        'id_usuario', 'id_ticket', 'descripcion', 'conflicto', 'fecha', 'operador'
     ];
 
     public function usuario()

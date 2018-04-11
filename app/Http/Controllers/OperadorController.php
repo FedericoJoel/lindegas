@@ -78,7 +78,7 @@ class OperadorController extends Controller
 //        return this->repo->find($operador);
     }
 
-    public function create($info){
-        $this->repo->create($info);
+    public function create(Request $request){
+        return $this->repo->create($request->all());
     }
 }

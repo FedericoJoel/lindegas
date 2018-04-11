@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 Route::get('usuario/all', 'UsuarioController@getAll');
 Route::get('duty/all', 'DutyController@getAll');
 Route::get('matriz/all', 'MatrizController@getAll');
+Route::get('risklog/all', 'RiskLogController@getAll');
 
 //--OPERADORES--
 Route::get('operador/all', 'OperadorController@getAll');
@@ -40,6 +41,7 @@ Route::post('analisis/perfiles', 'AnalisisController@perfilesAnalisis');
 Route::resource('usuario', 'UsuarioController');
 Route::resource('duty', 'DutyController');
 Route::resource('matriz', 'MatrizController');
+Route::resource('risklog','RisklogController');
 
 ////--RISKLOG--
 //Route::resource('risklog', RiskLogController);

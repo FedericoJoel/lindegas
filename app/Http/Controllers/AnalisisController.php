@@ -26,7 +26,7 @@ class AnalisisController extends Controller
 //        $results = collect(['Critical' => 130,'High' => 223,'Medium' => 156,'Low' => 218]);
         $results = DB::select("
             SELECT
-              SUM(CASE WHEN criticidad = 'Critica' THEN 1 ELSE 0 END) as 'Critical',
+              SUM(CASE WHEN criticidad = 'Critical' THEN 1 ELSE 0 END) as 'Critical',
               SUM(CASE WHEN criticidad = 'High' THEN 1 ELSE 0 END) as 'High',
               SUM(CASE WHEN criticidad = 'Medium' THEN 1 ELSE 0 END) as 'Medium',
               SUM(CASE WHEN criticidad = 'Low' THEN 1 ELSE 0 END) as 'Low'
