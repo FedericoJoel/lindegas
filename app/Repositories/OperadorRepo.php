@@ -47,19 +47,8 @@ class OperadorRepo
         return 'App\Repositories\OperadorRepo';
     }
 
-    function create(Array $data){
-//        $sucursales = array();
-//        foreach($data['perfiles'] as $perfil){
-//            array_push($sucursales,$perfil['sucursal_perfil']);
-////            array_push ($sucursales, $perfil['sucursal_perfil']);
-//        }
-//        return $sucursales;
-        return $data;
-
-//        DB::table('Operador')->insert([
-//            ['operador' => 'nombre', 'sucursal' => 'sucursales', 'nombre_operador' => 'nombre', 'clave_operador' => 'clave',
-//                'fehca_de_expiracion' => 'expiracion', 'habilitado_sn' => 'S', 'Perfil_SN' => 'N', 'email' => 'email', 'User_AD' => 'userad']
-//        ]);
-
+    function create(Array $operador, Array $relacion){
+        DB::table('Operador')->insert($operador);
+        DB::table('Rel_Operador_Perfil')->insert($relacion);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\OperadorRepo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class OperadorController extends Controller
 {
@@ -79,6 +80,48 @@ class OperadorController extends Controller
     }
 
     public function create(Request $request){
-        return $this->repo->create($request->all());
+        $data = Array();
+        $data = $request->all();
+        if(! DB::table('operador')->where('operador', $data['operador'])->exists()){
+            $current = Carbon::now();
+            $perfiles = collect($data['perfiles']);
+
+            $arrayOperador = $perfiles
+                ->map(function($elemento){return $elemento['sucursal'];})
+                ->unique()
+                ->map(function ($sucursal)use($data,$current){
+                return array(
+                    'operador'=> $data['operador'],
+                    'sucursal'=> $sucursal,
+                    'nombre_operador' => $data['nombre_operador'],
+                    'clave_operador' => $data['clave_operador'],
+                    'habilitado_sn' =>'S',
+//                    'fecha_modif_alta_reg' => $current,
+                    'Perfil_SN'=> 'S',
+                    'Email'=>$data['Email'],
+                    'User_AD'=>$data['User_AD']
+                );
+            });
+
+            $arrayRelacion = $perfiles
+                ->map(function($elemento)use($data,$current){
+                   return array(
+                       'Operador_Perfil' => $elemento['operador'],
+                       'sucursal_perfil' => $elemento['sucursal'],
+                       'operador' => $data['operador'],
+                       'sucursal_operador' => $elemento['sucursal'],
+//                       'fecha_modif_alta_reg' => $current
+                   );
+                });
+
+            DB::transaction(function()use($arrayOperador,$arrayRelacion){
+                $this->repo->create($arrayOperador->toArray(),$arrayRelacion->toArray());
+            });
+        }
+        else{
+            $mensaje = 'ya existe';
+            return $mensaje;
+            //ACA VA EL ERROR
+        }
     }
 }
