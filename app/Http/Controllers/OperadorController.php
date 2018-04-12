@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\OperadorRepo;
 use Illuminate\Http\Request;
@@ -97,7 +98,7 @@ class OperadorController extends Controller
                     'clave_operador' => $data['clave_operador'],
                     'habilitado_sn' =>'S',
 //                    'fecha_modif_alta_reg' => $current,
-                    'Perfil_SN'=> 'S',
+                    'Perfil_SN'=> 'N',
                     'Email'=>$data['Email'],
                     'User_AD'=>$data['User_AD']
                 );
@@ -115,13 +116,87 @@ class OperadorController extends Controller
                 });
 
             DB::transaction(function()use($arrayOperador,$arrayRelacion){
-                $this->repo->create($arrayOperador->toArray(),$arrayRelacion->toArray());
+                $this->repo->createOperador($arrayOperador->toArray());
+                $this->repo->createOperador($arrayRelacion->toArray());
             });
         }
         else{
             $mensaje = 'ya existe';
             return $mensaje;
             //ACA VA EL ERROR
+        }
+    }
+
+    public function update(Request $request){
+        $data = array();
+        $data = $request->all();
+        if(DB::table('operador')->where('operador', $data['operador'])->exists()){
+//            $current = Carbon::now();
+            $perfiles = collect($data['perfiles']);
+
+            $actuales =  DB::table('operador')->select('sucursal')->distinct()->where('operador',$data['operador'])->get();
+
+            $sucursalesActuales = $actuales->map(function ($elemento){
+                return array(
+                    'sucursal'=> $elemento -> sucursal
+                );
+            });
+
+            $sucursalesReq = $perfiles->map(function($elemento){
+                return array (
+                    'sucursal' =>$elemento['sucursal']
+                );
+            });
+
+            $sucursalesNuevas =  collect([]);
+
+            foreach ($sucursalesReq as $sucursalelem){
+                if (!$sucursalesActuales->contains('sucursal',$sucursalelem['sucursal'])){
+                    $sucursalesNuevas->push(Array('sucursal' => $sucursalelem['sucursal']));
+                }
+            }
+
+            $arrayOperadores = $sucursalesNuevas
+                ->unique()
+                ->map(function ($elemento)use($data){
+                    return array(
+                        'operador'=> $data['operador'],
+                        'sucursal'=> $elemento['sucursal'],
+                        'nombre_operador' => $data['nombre_operador'],
+                        'clave_operador' => $data['clave_operador'],
+                        'habilitado_sn' =>'S',
+                        'Perfil_SN'=> 'N',
+                        'Email'=>$data['Email'],
+                        'User_AD'=>$data['User_AD']
+                    );
+                });
+
+            $arrayRelacion = $perfiles
+                ->map(function($elemento)use($data){
+                    return array(
+                        'Operador_Perfil' => $elemento['operador'],
+                        'sucursal_perfil' => $elemento['sucursal'],
+                        'operador' => $data['operador'],
+                        'sucursal_operador' => $elemento['sucursal'],
+                    );
+                });
+
+            if (!$arrayOperadores->isEmpty()) {
+                DB::transaction(function () use ($data, $arrayOperadores, $arrayRelacion) {
+                    $this->repo->delete($data['operador']);
+                    $this->repo->createOperador($arrayOperadores->toArray());
+                    $this->repo->createRelation($arrayRelacion->toArray());
+                });
+            }else{
+                DB::transaction(function () use ($data, $arrayRelacion) {
+                    $this->repo->delete($data['operador']);
+                    $this->repo->createRelation($arrayRelacion->toArray());
+                });
+            }
+        }else{
+            $mensaje = 'no existe el usuario';
+            //ACA VA LA INT
+            return $mensaje;
         }
     }
 }

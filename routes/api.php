@@ -24,7 +24,8 @@ Route::get('risklog/all', 'RiskLogController@getAll');
 Route::get('operador/all', 'OperadorController@getAll');
 Route::get('operador/sucursales/{operador}', 'OperadorController@getSucursales');
 Route::get('operador/perfiles/{operador}', 'OperadorController@getPerfiles');
-Route::post('operador', 'OperadorController@create'); // MODIFICAR CREATE
+Route::post('operador', 'OperadorController@create');
+Route::post('operador/update', 'OperadorController@update');
 
 //--PERFILES--
 Route::get('perfil/all', 'PerfilController@getAll');

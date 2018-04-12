@@ -46,9 +46,15 @@ class OperadorRepo
     {
         return 'App\Repositories\OperadorRepo';
     }
-
-    function create(Array $operador, Array $relacion){
+    function createOperador(Array $operador){
         DB::table('Operador')->insert($operador);
+    }
+
+    function createRelation(Array $relacion){
         DB::table('Rel_Operador_Perfil')->insert($relacion);
+    }
+
+    function delete($operador){
+        DB::table('Rel_Operador_Perfil')->where('operador',$operador)->delete();
     }
 }

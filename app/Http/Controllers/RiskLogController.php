@@ -18,7 +18,8 @@ class RiskLogController extends Controller
 
     public function store(Request $request)
     {
-        $this->repo->create($request->all());
+        return $this->$request->all();
+//        $this->repo->create($request->all());
     }
 
     public function show($id)
@@ -32,4 +33,5 @@ class RiskLogController extends Controller
     {
         return $this->repo->all();
     }
+
 }

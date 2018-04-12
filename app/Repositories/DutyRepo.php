@@ -19,8 +19,7 @@ class DutyRepo extends Repositorio
     }
 
     public function all(){
-        return $this->gateway->with('perfiles')->get();
-
+//        return Duty::with('perfiles')->get()->toJson();
     }
 
 //    public function attachear(Request $request){

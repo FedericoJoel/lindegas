@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Duty extends Model
 {
-
     public $timestamps = false;
 
     protected $table = 'Duty';
@@ -17,6 +16,6 @@ class Duty extends Model
 
     public function perfiles()
     {
-        return $this->belongsToMany('App\Operador', 'Rel_Duty_Perfil', 'perfil', 'idduty');
+        return $this->belongsToMany('App\Operador', 'Rel_Duty_Perfil', 'idduty', 'perfil');
     }
 }

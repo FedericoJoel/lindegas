@@ -18,6 +18,8 @@ class RiskLogRepo extends Repositorio
         return 'App\Repositories\RiskLogRepo';
     }
 
+    protected $filiable = ['id_usuario','id_ticket','descripcion','conflicto','operador'];
+
 //    public function all()
 //    {
 //        return $this->gateway->with(['usuario'])->get();
