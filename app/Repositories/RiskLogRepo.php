@@ -18,7 +18,12 @@ class RiskLogRepo extends Repositorio
         return 'App\Repositories\RiskLogRepo';
     }
 
-
+    public function create(array $data)
+    {
+        return $data;
+//        $obj = $this->gateway->insert($data);
+//        return $obj;
+    }
 
 //    public function all()
 //    {

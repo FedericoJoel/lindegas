@@ -27,7 +27,9 @@ class RiskLogController extends Controller
 //
 //        );
 //        return $data;
-        $this->repo->create($request->all());
+//        return $request->all();
+        $obj = $this->repo->create($request->all());
+        return $obj;
     }
 
     public function show($id)

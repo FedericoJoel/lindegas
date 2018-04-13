@@ -117,7 +117,7 @@ class OperadorController extends Controller
 
             DB::transaction(function()use($arrayOperador,$arrayRelacion){
                 $this->repo->createOperador($arrayOperador->toArray());
-                $this->repo->createOperador($arrayRelacion->toArray());
+                $this->repo->createRelation($arrayRelacion->toArray());
             });
         }
         else{
