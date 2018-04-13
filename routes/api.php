@@ -46,9 +46,11 @@ Route::post('analisis/perfiles', 'AnalisisController@perfilesAnalisis');
 Route::resource('usuario', 'UsuarioController');
 Route::resource('duty', 'DutyController');
 Route::resource('matriz', 'MatrizController');
-
-
 Route::resource('risklog','RisklogController');
+
+//--HISTORICOS--
+Route::post('historico','HistoricoController@store');
+Route::get('historico/{numero}', 'HistoricoController@getHistorico');
 
 ////--RISKLOG--
 //Route::resource('risklog', RiskLogController);

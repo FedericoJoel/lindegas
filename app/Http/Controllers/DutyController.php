@@ -71,7 +71,12 @@ class DutyController extends Controller
     }
 
     public function getDutyPerfiles($id){
-        return $this->repo->perfilesdeDuty($id);
-
+        $info =  $this->repo->perfilesdeDuty($id);
+        $formateado = $info->map(function($elemento){
+            return Array(
+                    'operador'=>$elemento->perfil
+            );
+        });
+        return $formateado->toArray();
     }
 }
