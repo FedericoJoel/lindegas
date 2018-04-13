@@ -26,10 +26,9 @@ class HistoricoRepo extends Repositorio
 
     public function getUltimos($numero){
         $obj = $this->gateway->orderBy('Fecha_Analisis','desc')->take($numero)->get();
-//        return $obj;
-//        $
-//        $obj->
-        return $obj;
+        $array = $obj->toArray();
+        $reversed = array_reverse($array);
+        return $reversed;
     }
 
 //    public function all()
