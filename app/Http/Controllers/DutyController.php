@@ -69,4 +69,9 @@ class DutyController extends Controller
     {
         return $this->repo->all();
     }
+
+    public function getDutyPerfiles($id){
+        return $this->repo->perfilesdeDuty($id);
+
+    }
 }

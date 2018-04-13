@@ -20,6 +20,9 @@ Route::get('duty/all', 'DutyController@getAll');
 Route::get('matriz/all', 'MatrizController@getAll');
 Route::get('risklog/all', 'RiskLogController@getAll');
 
+//--DUTY--
+Route::get('duty/perfiles/{duty}', 'DutyController@getDutyPerfiles');
+
 //--OPERADORES--
 Route::get('operador/all', 'OperadorController@getAll');
 Route::get('operador/sucursales/{operador}', 'OperadorController@getSucursales');
@@ -42,6 +45,8 @@ Route::post('analisis/perfiles', 'AnalisisController@perfilesAnalisis');
 Route::resource('usuario', 'UsuarioController');
 Route::resource('duty', 'DutyController');
 Route::resource('matriz', 'MatrizController');
+
+
 Route::resource('risklog','RisklogController');
 
 ////--RISKLOG--

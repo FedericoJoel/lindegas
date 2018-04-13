@@ -85,7 +85,7 @@ class OperadorController extends Controller
     }
 
     public function getOperador($operador){
-//        return this->repo->find($operador);
+        DB::table('operador')->where('operador', $operador)->groupby('operador')->get();
     }
 
     public function create(Request $request){
@@ -139,7 +139,7 @@ class OperadorController extends Controller
         $data = array();
         $data = $request->all();
         if(DB::table('operador')->where('operador', $data['operador'])->exists()){
-//            $current = Carbon::now();
+            $yesterday = Carbon::yesterday();
             $perfiles = collect($data['perfiles']);
 
             $actuales =  DB::table('operador')->select('sucursal')->distinct()->where('operador',$data['operador'])->get();
@@ -166,12 +166,13 @@ class OperadorController extends Controller
 
             $arrayOperadores = $sucursalesNuevas
                 ->unique()
-                ->map(function ($elemento)use($data){
+                ->map(function ($elemento)use($data,$yesterday){
                     return array(
                         'operador'=> $data['operador'],
                         'sucursal'=> $elemento['sucursal'],
                         'nombre_operador' => $data['nombre_operador'],
                         'clave_operador' => $data['clave_operador'],
+                        'fecha_de_expiracion' => $yesterday,
                         'habilitado_sn' =>'S',
                         'Perfil_SN'=> 'N',
                         'Email'=>$data['Email'],
