@@ -20,8 +20,8 @@ class RiskLogRepo extends Repositorio
 
     public function create(array $data)
     {
-        return $data;
-//        $obj = $this->gateway->insert($data);
+//        return $data;
+        $obj = $this->gateway->insert($data);
 //        return $obj;
     }
 

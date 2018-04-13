@@ -14,29 +14,19 @@ class RiskLogController extends Controller
     public function __construct(RiskLogRepo $repo)
     {
 
-//        $this->repo = $repo;
+        $this->repo = $repo;
     }
 
     public function store(Request $request)
     {
-//        return $this->$request->all();
-//
-//        $data = array(
-//            array('name'=>'Coder 1', 'rep'=>'4096'),
-//            array('name'=>'Coder 2', 'rep'=>'2048'),
-//
-//        );
-//        return $data;
-//        return $request->all();
-        $obj = $this->repo->create($request->all());
-        return $obj;
+        $data = Array();
+        $data =  $request->all();
+        $this->repo->create($data);
     }
 
     public function show($id)
     {
         return $this->repo->find($id);
-        //$users = DB::table('Usuarios')->where('ID',$id)->fisrt();
-        //return $users;
     }
 
     public function getAll()
