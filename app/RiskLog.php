@@ -20,4 +20,6 @@ class RiskLog extends Model
         return $this->belongsTo('App\Usuario', 'id_usuario');
     }
 
+    protected $filiable = ['id_usuario','id_ticket','descripcion','conflicto','operador'];
+
 }
