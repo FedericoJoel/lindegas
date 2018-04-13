@@ -29,6 +29,7 @@ Route::get('operador/sucursales/{operador}', 'OperadorController@getSucursales')
 Route::get('operador/perfiles/{operador}', 'OperadorController@getPerfiles');
 Route::post('operador', 'OperadorController@create');
 Route::post('operador/update', 'OperadorController@update');
+Route::get('operador/{operador}', 'OperadorController@getOperador');
 
 //--PERFILES--
 Route::get('perfil/all', 'PerfilController@getAll');

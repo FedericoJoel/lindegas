@@ -85,7 +85,7 @@ class OperadorController extends Controller
     }
 
     public function getOperador($operador){
-        DB::table('operador')->where('operador', $operador)->groupby('operador')->get();
+        return DB::table('operador')->select('operador','nombre_operador','clave_operador','Email','User_AD')->where('operador', $operador)->groupby('operador','nombre_operador','clave_operador','Email','User_AD')->get();
     }
 
     public function create(Request $request){
