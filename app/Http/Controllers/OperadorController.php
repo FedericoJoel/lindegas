@@ -73,7 +73,15 @@ class OperadorController extends Controller
 
     public function getPerfiles($operador)
     {
-        return $this->repo->perfiles($operador);
+        $perfiles = $this->repo->perfiles($operador);
+        $perfilesNuevos = $perfiles
+            ->map(function($elemento){
+               return Array(
+                   'operador' => $elemento->Operador_Perfil,
+                    'sucursal' => $elemento->sucursal_perfil
+               );
+            });
+        return $perfilesNuevos;
     }
 
     public function getOperador($operador){
