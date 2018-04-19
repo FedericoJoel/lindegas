@@ -138,6 +138,7 @@ class OperadorController extends Controller
     public function update(Request $request){
         $data = array();
         $data = $request->all();
+        $current = Carbon::now();
         if(DB::table('operador')->where('operador', $data['operador'])->exists()){
             $yesterday = Carbon::yesterday();
             $perfiles = collect($data['perfiles']);
@@ -181,12 +182,13 @@ class OperadorController extends Controller
                 });
 
             $arrayRelacion = $perfiles
-                ->map(function($elemento)use($data){
+                ->map(function($elemento)use($data,$current){
                     return array(
                         'Operador_Perfil' => $elemento['operador'],
                         'sucursal_perfil' => $elemento['sucursal'],
                         'operador' => $data['operador'],
                         'sucursal_operador' => $elemento['sucursal'],
+                        'fecha_modif_alta_reg' => $current
                     );
                 });
 

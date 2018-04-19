@@ -52,14 +52,16 @@ Route::resource('risklog','RisklogController');
 Route::post('historico','HistoricoController@store');
 Route::get('historico/{numero}', 'HistoricoController@getHistorico');
 
-////--RISKLOG--
-//Route::resource('risklog', RiskLogController);
-//Route::get('operador/{operador/{sucursal}}','OperadorController@find');
+//--RISKLOG--
+Route::resource('risklog', 'RiskLogController');
+Route::get('operador/{operador/{sucursal}}','OperadorController@find');
 
+//--LOGIN--
+Route::post('login','LoginController@login');
 
 //Router::get('Usuario/{nombre}/{sucursal}', 'UsuarioController@get');
 
-
+/*
 Route::post('tablita', function(Request $request){
     $tabla = $request['tabla'];
    return DB::table($tabla)->get();
@@ -77,4 +79,4 @@ Route::post('login', 'LoginController@login');
 Route::get('crearUsuario', function(){
    \App\User::create(['email' => 3, 'password' => 3, 'name' => 'pepe', 'avatar' => 1]);
    return \App\User::all();
-});
+});*/
