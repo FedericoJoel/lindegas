@@ -12,7 +12,7 @@ class Operador extends Model
     protected $primaryKey = 'operador';
 
     protected $fillable = [
-        'operador', 'sucursal', 'nombre_operador', 'clave_operador', 'fecha_de_expiracion', 'habilitado_sn', 'Email', 'User_AD'
+        'operador', 'sucursal', 'nombre_operador', 'clave_operador', 'fecha_de_expiracion', 'habilitado_sn', 'Email', 'User_AD', 'fecha_modif_alta_reg'
     ];
 
     public function duties()
