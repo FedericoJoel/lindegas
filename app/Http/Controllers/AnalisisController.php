@@ -51,7 +51,7 @@ class AnalisisController extends Controller
                   WHERE primerset.conflicto = segundoset.conflicto2
                   GROUP BY primerset.operador1, primerset.D1, segundoset.D2, primerset.conflicto, primerset.criticidad,primerset.P1,segundoset.P2) AS fullset
 ");*/
-        return $results; 
+        return $results->toArray(); 
     }
 
     public function fullAnalisis()
