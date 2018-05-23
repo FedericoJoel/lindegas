@@ -23,8 +23,8 @@ class AnalisisController extends Controller
 
     public function liteAnalisis()
     {
-//        $results = collect(['Critical' => 130,'High' => 223,'Medium' => 156,'Low' => 218]);
-        $results = DB::select("
+        $results = collect(['Critical' => 130,'High' => 223,'Medium' => 156,'Low' => 218]);
+         /* $results = DB::select("
             SELECT
               SUM(CASE WHEN criticidad = 'Critical' THEN 1 ELSE 0 END) as 'Critical',
               SUM(CASE WHEN criticidad = 'High' THEN 1 ELSE 0 END) as 'High',
@@ -50,8 +50,8 @@ class AnalisisController extends Controller
                   ON primerset.operador1 =  segundoset.operador2) 
                   WHERE primerset.conflicto = segundoset.conflicto2
                   GROUP BY primerset.operador1, primerset.D1, segundoset.D2, primerset.conflicto, primerset.criticidad,primerset.P1,segundoset.P2) AS fullset
-");
-        return $results;
+");*/
+        return $results; 
     }
 
     public function fullAnalisis()
