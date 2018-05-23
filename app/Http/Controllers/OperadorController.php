@@ -173,7 +173,7 @@ class OperadorController extends Controller
                         'sucursal'=> $elemento['sucursal'],
                         'nombre_operador' => $data['nombre_operador'],
                         'clave_operador' => $data['clave_operador'],
-                        'fecha_de_expiracion' => $yesterday,
+                        //'fecha_de_expiracion' => $yesterday,
                         'habilitado_sn' =>'S',
                         'Perfil_SN'=> 'N',
                         'Email'=>$data['Email'],
