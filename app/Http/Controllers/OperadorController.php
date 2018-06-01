@@ -105,7 +105,7 @@ class OperadorController extends Controller
                     'nombre_operador' => $data['nombre_operador'],
                     'clave_operador' => $data['clave_operador'],
                     'habilitado_sn' =>'S',
-                  //'fecha_modif_alta_reg' => $current,
+                    'fecha_modif_alta_reg' => $current,
                     'Perfil_SN'=> 'N',
                     'Email'=>$data['Email'],
                     'User_AD'=>$data['User_AD']
@@ -119,7 +119,7 @@ class OperadorController extends Controller
                        'sucursal_perfil' => $elemento['sucursal'],
                        'operador' => $data['operador'],
                        'sucursal_operador' => $elemento['sucursal']
-                     //'fecha_modif_alta_reg' => $current
+                     'fecha_modif_alta_reg' => $current
                    );
                 });
 
@@ -173,7 +173,7 @@ class OperadorController extends Controller
                         'sucursal'=> $elemento['sucursal'],
                         'nombre_operador' => $data['nombre_operador'],
                         'clave_operador' => $data['clave_operador'],
-                        //'fecha_de_expiracion' => $yesterday,
+                        'fecha_de_expiracion' => $yesterday,
                         'habilitado_sn' =>'S',
                         'Perfil_SN'=> 'N',
                         'Email'=>$data['Email'],
@@ -188,7 +188,7 @@ class OperadorController extends Controller
                         'sucursal_perfil' => $elemento['sucursal'],
                         'operador' => $data['operador'],
                         'sucursal_operador' => $elemento['sucursal']
-                        //'fecha_modif_alta_reg' => $current
+                        'fecha_modif_alta_reg' => $current
                     );
                 });
 
