@@ -51,7 +51,17 @@ class OperadorRepo
     }
 
     function createRelation(Array $relacion){
-        DB::table('Rel_Operador_Perfil')->insert($relacion);
+        $part = [];
+        $offset = 0;
+        $longitud  = count($relacion);
+        while($longitud>10){
+            $part = array_slice($relacion, $offset, 10);
+            DB::table('Rel_Operador_Perfil')->insert($part);
+            $longitud = $longitud - 10;
+            $offset = $offset + 10;
+        }
+        $part = array_slice($relacion,$offset);
+		DB::table('Rel_Operador_Perfil')->insert($part);
     }
 
     function delete($operador){

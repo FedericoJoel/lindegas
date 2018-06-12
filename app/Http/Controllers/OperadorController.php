@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use function foo\func;
+// use function foo\func;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\OperadorRepo;
 use Illuminate\Http\Request;
@@ -118,7 +118,7 @@ class OperadorController extends Controller
                        'Operador_Perfil' => $elemento['operador'],
                        'sucursal_perfil' => $elemento['sucursal'],
                        'operador' => $data['operador'],
-                       'sucursal_operador' => $elemento['sucursal']
+                       'sucursal_operador' => $elemento['sucursal'],
                      'fecha_modif_alta_reg' => $current
                    );
                 });
@@ -187,7 +187,7 @@ class OperadorController extends Controller
                         'Operador_Perfil' => $elemento['operador'],
                         'sucursal_perfil' => $elemento['sucursal'],
                         'operador' => $data['operador'],
-                        'sucursal_operador' => $elemento['sucursal']
+                        'sucursal_operador' => $elemento['sucursal'],
                         'fecha_modif_alta_reg' => $current
                     );
                 });

@@ -51,7 +51,9 @@ class DutyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->repo->update($request->all(),$id);
+        $obj = $this->repo->update->($request->all(),$id);
+        $obj->perfiles()->detach();
+        $this->repo->attach($request['ids'],'perfiles',$obj->id);
     }
 
     /**
